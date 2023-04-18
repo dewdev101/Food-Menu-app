@@ -1,0 +1,40 @@
+model DewKitchenCategory {
+  id       Int              @id @default(autoincrement())
+  category String           @unique
+  menus    DewKitchenMenu[]
+  createAt DateTime         @default(now())
+  updateAt DateTime         @updatedAt
+}
+
+model DewKitchenMenu {
+  id           Int                 @id @default(autoincrement())
+  name         String
+  image        String
+  price        Float
+  categoryKey  DewKitchenCategory? @relation(fields: [categoryName], references: [category])
+  categoryName String?
+  orderItems   DewOrderItem[]
+  createAt     DateTime            @default(now())
+  updateAt     DateTime            @updatedAt
+}
+
+model DewKitchenOrder {
+  id       Int            @id @default(autoincrement())
+  status   String         @default("PENDING")
+  tableId  Int
+  items    DewOrderItem[]
+  createAt DateTime       @default(now())
+  updateAt DateTime       @updatedAt
+}
+
+model DewOrderItem {
+  id         Int              @id @default(autoincrement())
+  menu       DewKitchenMenu   @relation(fields: [menuId], references: [id])
+  menuId     Int
+  order      DewKitchenOrder? @relation(fields: [orderId], references: [id])
+  orderId    Int?
+  quantity   Int
+  totalPrice Float
+  createAt   DateTime         @default(now())
+  updateAt   DateTime         @updatedAt
+}
