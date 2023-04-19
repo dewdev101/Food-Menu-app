@@ -16,3 +16,8 @@ export interface IAddMenu{
 export interface IGetCategories{};
 
 export interface IDeleteCategories{};
+
+export const DeleteMenuCodec = t.type({
+  id:t.number
+});
+export interface IDeleteMenu extends t.TypeOf<typeof DeleteMenuCodec>{}

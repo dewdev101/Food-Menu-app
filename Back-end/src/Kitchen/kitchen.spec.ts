@@ -1,23 +1,23 @@
-import { addCategory, addMenu } from "./resolve";
+import { addCategory, addMenu, deleteMenu } from "./resolve";
 
-// describe("addCategory", () => {
-//   test("should add a category",async()=>{
-//     const category = "ทอด";
-//     const result = await addCategory({
-//       category: category,
-//     })
-//     console.log("result",result);
-//     expect(result.category.length>0).toBe(true);
-//   })
-// })
+describe("addCategory", () => {
+  test("should add a category",async()=>{
+    const category = "ทอด";
+    const result = await addCategory({
+      category: category,
+    })
+    console.log("result",result);
+    expect(result.category.length>0).toBe(true);
+  })
+})
 
 describe("addMenu", ()=>{
   test("should add menu",async()=>{
     const menu = {
-      name: "แกงส้มชะอมกุ้ง",
-      image:"https://img.wongnai.com/p/1920x0/2018/12/17/bf69cc77dfb94a5ab6df20ffb0622cd2.jpg",
-      price:150,
-      categoryId: 1
+      name: "ยอดฟักแม้วผัดหมูสับ",
+      image:"https://i.ytimg.com/vi/6yM0oog1iDQ/maxresdefault.jpg",
+      price:130,
+      categoryId: 3
     };
     const result = await addMenu({
       name: menu.name,
@@ -27,5 +27,16 @@ describe("addMenu", ()=>{
     })
     console.log("result",result);
     expect(result.name.length>0).toBe(true);
+  });
+});
+
+describe("deleteMenu",()=>{
+  test("deleteMenu",async()=>{
+    const deleteId = 9 
+    const result = await deleteMenu({
+      id: deleteId
+    })
+    console.log("result",result);
+    expect(result.count>0).toBe(true)
   });
 });
