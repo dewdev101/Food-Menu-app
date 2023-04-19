@@ -1,17 +1,20 @@
 import * as t from "io-ts";
 
+export interface IGetMenu{};
+
 export const  AddCategoryCodec = t.type({
   category:t.string
 })
 
 export interface IAddCategory extends t.TypeOf<typeof AddCategoryCodec> {}
 
-export interface IAddMenu{
-  name: string;
-  image: string;
-  price: number;
-  categoryId: number;
-}
+export const IAddMenuCodec=t.type({
+  name: t.string,
+  image: t.string,
+  price: t.number,
+  categoryId: t.number
+})
+export interface IAddMenu extends t.TypeOf<typeof IAddMenuCodec>{}
 
 export interface IGetCategories{};
 

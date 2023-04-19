@@ -1,4 +1,4 @@
-import Nav from "./Nav";
+import Nav from "../Component/Nav";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
@@ -48,9 +48,6 @@ const CheckBillMain = () => {
       });
   };
   console.log("Bill>>>", bill);
-  // console.log("Total prices:", bill[0].items.reduce((acc,r)=>acc+r.totalPrice,0));
-  // const _totalPrice = bill[0].items.reduce((acc,r)=>acc+r.totalPrice,0);
-  // setTotalPrice(_totalPrice);
 
   const calculateBill = () => {
     const _result = bill[0].items.reduce((acc, r) => acc + r.totalPrice, 0);

@@ -1,4 +1,4 @@
-import { addCategoryhandler, deleteCategoriesHandler, deleteMenuHandler, getCategoriesHandler } from "./Kitchen/handler";
+import { addCategoryhandler, deleteCategoriesHandler, deleteMenuHandler, getCategoriesHandler, getMenuHandler } from "./Kitchen/handler";
 
   export const AppRoutes = [
     {
@@ -20,6 +20,11 @@ import { addCategoryhandler, deleteCategoriesHandler, deleteMenuHandler, getCate
       method: "post",
       path: "/myKitchen/deleteMenu",
       action: deleteMenuHandler,
+    },
+    {
+      method: "post",
+      path: "/myKitchen/getMenu",
+      action: getMenuHandler,
     },
 
 ];

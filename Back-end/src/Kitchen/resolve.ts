@@ -1,6 +1,11 @@
 import { PrismaClient } from "@prisma/client";
-import { IAddCategory, IAddMenu, IDeleteCategories, IDeleteMenu, IGetCategories } from "./interface";
+import { IAddCategory, IAddMenu, IDeleteCategories, IDeleteMenu, IGetCategories, IGetMenu } from "./interface";
 export const prisma = new PrismaClient();
+
+export const getMenu = async (args:IGetMenu)=>{
+  const result = await prisma.dewKitchenMenu.findMany({});
+  return result
+};
 
 export const addCategory = async (args: IAddCategory) => {
   const result = await prisma.dewKitchenCategory.create({

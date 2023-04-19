@@ -16,7 +16,7 @@ const Home = () => {
   useEffect(() => {
     const a = axios({
       method: "post",
-      url: "http://localhost:5000/myKitchen/getCategories",
+      url: "http://localhost:5000/myKitchen/getMenu",
     }).then((res) => {
       setMenu(res.data);
       console.log("res.data>>>>", res.data);
@@ -24,10 +24,8 @@ const Home = () => {
       //   "catgory",
       //   res.data?.map((r) => r.categoryName)
       // );
-      setCategories([...new Set(res.data?.map((r) => r.category))]);
-      console.log("unique ", [
-        ...new Set(res.data?.map((r) => r.category)),
-      ]); // unique menu
+      setCategories([...new Set(res.data?.map((r) => r.categoryName))]);
+    
     });
   }, []);
 
@@ -62,7 +60,7 @@ const Home = () => {
     console.log("_preparedData", _preparedData);
     axios({
       method: "POST",
-      url: "http://localhost:5000/dewKitchen/createOrder",
+      url: "http://localhost:5000/dewKitchne/createOrder",
       data: _preparedData,
     }).then((response) => {
       console.log("createOrder response.data:", response.data);
@@ -79,7 +77,7 @@ const Home = () => {
         <div className="mx-auto text-center w-screen pt-12 pb-1 Object-cover hidden-overflow rounded-lg">
           <img
             className="p-4  w-[350px] mx-auto rounded-lg shadow-lg"
-            alt="Doreamon "
+            alt="Background Image"
             src="https://lh5.googleusercontent.com/proxy/OOLPeoIKpdepNl7UpQ4zFV2z9HYxVljs9JIUOiuJTsCSe6k40i1yc6NQ26cR2a53JKJ92SS6hPpy3SEtfpo3xwKGh_L4IJASo-6jn38u3OCA6X64aTSXD9d94hmn2auLxVo=w1200-h630-p-k-no-nu"
           />
         </div>

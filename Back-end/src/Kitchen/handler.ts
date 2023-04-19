@@ -4,8 +4,19 @@ import {
   deleteCategories,
   deleteMenu,
   getCategories,
+  getMenu,
 } from "./resolve";
 import { AddCategoryCodec, DeleteMenuCodec } from "./interface";
+
+export const getMenuHandler = async (req: Request, res: Response) => {
+  try {
+    const body = req?.body;
+    const result = await getMenu(body);
+    return res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
 
 export const addCategoryhandler = async (req: Request, res: Response) => {
   try {
