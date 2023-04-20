@@ -76,6 +76,8 @@ export const getOrderByTableIdHandler = async (req: Request, res: Response) => {
     if (IGetOrderByTableIdCOdec.decode(body)._tag === "Right") {
       const result = await getOrderByTableId(body);
       return res.status(200).json(result);
+    } else {
+      res.status(500).send("Error to validate getOrderByTableIdHandler");
     }
   } catch (err) {
     res.status(500).json(err);
@@ -88,6 +90,8 @@ export const createOrderHandler = async (req: Request, res: Response) => {
     if (ICreateOrderCodec.decode(body)._tag === "Right") {
       const result = await createOrder(body);
       return res.status(200).json(result);
+    } else {
+      res.status(500).send("Error to validate createOrderHandler");
     }
   } catch (err) {
     res.status(500).json(err);
