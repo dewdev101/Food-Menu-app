@@ -9,10 +9,10 @@ const CartPopUp = (props) => {
 
   return (
     <>
-      <div className="fixed top-[20%] right-0 w-screen  font-kanit ">
-        <div className="bg-gradient-to-b from-red-200  to-red-300 p-2 text-left">
+      <div className="fixed top-[20%] md:top-[40%] md:p-[20px] right-5 md:left-[25%] md:w-1/2 w-screen  font-kanit ">
+        <div className="bg-gradient-to-b from-red-200  to-yellow-300 p-2 text-left md:p-5">
           <div className="flex flex-row ">
-            <div className="w-[320px]">สั่งอาหาร</div>
+            <div className="w-[320px] md:w-[85%]">สั่งอาหาร</div>
             <div className="flex-auto ">
               <button onClick={() => setToggle(false)}>ปิด</button>
             </div>
@@ -37,7 +37,7 @@ const CartPopUp = (props) => {
 
           {cart?.map((r) => (
             <div className="flex flex-row my-2 space-x-1">
-              <div className="w-[250px] font-bold">{r.name}</div>
+              <div className="w-[250px] md:w-[78%] font-bold">{r.name}</div>
               <div
                 onClick={() =>
                   updateCart({

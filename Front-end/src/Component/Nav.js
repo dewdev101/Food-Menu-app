@@ -11,7 +11,7 @@ const Nav = ({ setToggle, toggle }) => {
           </Link>
         </div>
         <div className=" text-2xl font-bold text-cyan-700">ThaiCuisine</div>
-        <div className="cursor-pointer  my-auto w-[45%] px-2">
+        <div className="cursor-pointer  my-auto w-[45%] md:w-[80%] px-2">
           <Link to="/faq">FAQ</Link>
         </div>
         <div
