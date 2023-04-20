@@ -1,4 +1,4 @@
-# 1. วิธีติดตั้ง typescript + express + tsc + ts-node
+# 1. ติดตั้ง typescript + express + tsc + ts-node
 
 ```bash
 yarn add express ts-node tsconfig-paths
@@ -100,10 +100,7 @@ Status Code: 3xx server redirect, server connect ไม่ได้
 Status Code: 4xx หาข้อมูลไม่เจอ, bad request
 Status Code: 5xx แปลว่า Error
 
-## Nested Url
 
-เราสามารถทำ API Endpoint ที่ path nested ได้เช่น
-`https://localhost:3000/user/register`
 
 # 3. ต่อ Postgres Database ด้วย pg
 
@@ -127,7 +124,7 @@ yarn add --dev @types/pg
 
 ข้อดีของ prisma คือช่วยให้เราจัดการ database ได้โดยไม่ต้อง เขียน SQL ตรงๆ ช่วยให้จัดการโครงสร้าง database ที่ซับซ้อนได้ง่าย
 
-สร้าง schema ใน postgres ใหม่ชื่อว่า todolist
+สร้าง schema ใน postgres ใหม่ชื่อว่า [database name]
 
 ติดตั้ง prisma
 
@@ -136,7 +133,7 @@ yarn add @yarnpkg/pnpify
 npx prisma init --datasource-provider postgresql
 
 เพิ่มตัวแปรใน .env
-DATABASE_URL="postgresql://postgres:password@localhost:5432/postgres?schema=todolist"
+DATABASE_URL="postgresql://postgres:password@localhost:5432/postgres?schema=[database name]"
 
 เขียน Schema ของ App TodoList ใน Folder /prisma
 
@@ -153,35 +150,11 @@ DATABASE_URL="postgresql://postgres:password@localhost:5432/postgres?schema=todo
 
 รันคำสั่งดังต่อไปนี้ yarn prisma:merge เพื่อรวมไฟล์โครงสร้าง prisma หลายๆ ไฟล์เข้าด้วยกัน yarn prisma:format เพื่อ format โค้ด prisma ให้สวยงาม และเช็คว่าเขียนโครงสร้างถูกต้องไหม yarn prisma:migrate เพื่อนำโครงสร้างใหม่นี้แก้ไขใน postgres database ขั้นตอนนี้ต้องระมันระวังเป็นพิเศษ ถ้ามีการลบโครงสร้างเดิมแล้ว migrate ข้อมูลเดิมใน database อาจหายหมดได้ เมื่อมีการ migrate จะมีไฟล์ .sql ในโฟลเดอร์ /migrations ไว้เก็บประวัติการเปลี่ยนแปลงโครงสร้างของ database ซึ่งไฟล์ในโฟลเดอร์นี้ห้ามลบเด็ดขาด ไม่งั้นถ้ามีการเพิ่ม field แล้ว migrate ใหม่ ข้อมูลใน database จะหายหมด yarn prisma:generate เพื่อสร้าง typescript interface สำหรับการเรียกใช้งานในโค้ดของเรา
 
-สร้าง API สำหรับเชื่อมต่อ TodoList
+สร้าง API สำหรับเชื่อมต่อ Food-Menu-app
 
-# 6. สร้าง API ครัวคุณบิน ด้วย Prisma
+# 6. สร้าง API ด้วย Prisma
 
-# 7. สร้างแอพจองห้องประชุม
-
-สามารถสร้างห้องประชุมได้ หลายห้อง แต่ละห้องมี slot เวลา ให้เลือก การจองขั้นต่ำครึ่งชั่วโมง ถ้าวันเวลาและห้องนั้นเต็มต้องมี Error แจ้งเตือนไม่ให้จอง
-
-เมื่อจองแล้วจะมีรหัสลับ 4 ตัว ให้เจ้าของ ซึ่งเจ้าของสามารถใช้รหัสลับนั้นยกเลิกการจองได้
-
-# 8. API Trivia
-
-- createCategory
-- getCategories
-- createQuiz (ส่ง category มา)
-- getQuiz (ส่ง category ที่ต้องการเล่นมา สุ่ม คำถาม 3 ข้อจาก database และแต่ละข้อ random choice มา 3 choice)
-- submitQuiz (ส่งคำตอบของ user แต่ละข้อไป -> response จะบอกว่าข้อไหนถูก ข้อไหนผิด และคะแนนของรอบนั้น)
-- getResults (แสดงผลลัพธ์ของการเล่นแต่ละรอบทั้งหมด คะแนน)
-- updateQuiz
-
-# 9. API Twitter
-
-- getUserProfile
-- createUserPost
-- getHashtags
-- getPostByHashtag (ส่ง hashtag ที่ต้องการไป แล้วแสดง post ทั้งหมด)
-- getPostByUser (แสดงรายละเอียดของ user คนนั้น พร้อม reply)
-
-# 10. Unit test with jest
+# 7. Unit test with jest
 
 ติดตั้ง jest
 yarn add --dev jest ts-jest @types/jest
@@ -189,6 +162,6 @@ yarn add --dev jest ts-jest @types/jest
 สร้างไฟล์ trivia.spec.ts
 เพิ่มคำสั่งใน package.json -> scripts
 "test": "jest --verbose",
-"test:trivia": "jest -- src/trivia"
+"test:trivia": "jest -- src/[folder name]"
 
 

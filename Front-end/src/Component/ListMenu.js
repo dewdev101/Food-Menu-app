@@ -4,9 +4,9 @@ const ListMenu = (props) => {
   const data = categories.map((category) => {
     return menu.filter((s) => s.categoryName === category);
   });
-  console.log("ListMenu", data);
+  // console.log("ListMenu", data);
   // console.log("menu", menu);
-  console.log("categories", categories);
+  // console.log("categories", categories);
   return (
     <>
       {" "}
