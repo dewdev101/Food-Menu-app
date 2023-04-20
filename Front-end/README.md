@@ -1,4 +1,5 @@
-# install react 
+# install react
+
 ```bash
 npx create-react-app my-app
 cd [ProjectName]
@@ -6,14 +7,16 @@ npm start
 ```
 
 # install tailwindCSS
+
 ```bash
 npm install -D tailwindcss
 npx tailwindcss init
 ```
+
 This will create tailwind.config.js
 then copy below to tailwind.config.js
 
-```json
+```bash
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
@@ -28,6 +31,7 @@ module.exports = {
 ```
 
 # Add tailwindCSS to directory
+
 copy below to index.css
 
 ```bash
@@ -36,9 +40,11 @@ copy below to index.css
 @tailwind utilities;
 ```
 
-# Create postcss.config.js 
+# Create postcss.config.js
+
 then copy below to the file
-```json
+
+```bash
 module.exports = {
   plugins: {
     tailwindcss: {},
@@ -46,18 +52,21 @@ module.exports = {
   },
 }
 ```
+
 # install axios
+
 ```bash
 yarn add axios
 ```
+
 # install react-icons
+
 ```bash
 yarn add react-icons
 ```
+
 # install router
+
 ```bash
 yarn add react-routers-dom
 ```
-
-
-
