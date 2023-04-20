@@ -3,8 +3,8 @@
 ### Install react
 
 ```bash
-npx create-react-app **[ProjectName]**
-cd **[ProjectName]**
+npx create-react-app [ProjectName]
+cd [ProjectName]
 npm start
 ```
 
@@ -15,8 +15,8 @@ npm install -D tailwindcss
 npx tailwindcss init
 ```
 
-This will create <font style="color:blue">tailwind.config.js</font>
-then copy below to **tailwind.config.js**
+This will create ***tailwind.config.js***
+then copy below to ***tailwind.config.js***
 
 ```bash
 module.exports = {
