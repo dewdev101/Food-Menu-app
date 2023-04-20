@@ -1,7 +1,9 @@
 # install react 
+```bash
 npx create-react-app my-app
 cd [ProjectName]
 npm start
+```
 
 # install tailwindCSS
 npm install -D tailwindcss
