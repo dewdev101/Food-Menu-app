@@ -9,8 +9,8 @@ const CartPopUp = (props) => {
 
   return (
     <>
-      <div className="fixed top-[20%] md:top-[40%] md:p-[20px] right-5 md:left-[25%] md:w-1/2 w-screen  font-kanit ">
-        <div className="bg-gradient-to-b from-red-200  to-yellow-300 p-2 text-left md:p-5">
+      <div className="fixed top-[20%] md:top-[40%] md:p-[20px] right-0 md:left-[25%] md:w-1/2 w-screen  font-kanit ">
+        <div className="bg-[#FFF8E9] p-2 text-left md:p-5 rounded-lg">
           <div className="flex flex-row ">
             <div className="w-[320px] md:w-[85%]">สั่งอาหาร</div>
             <div className="flex-auto ">
@@ -49,7 +49,7 @@ const CartPopUp = (props) => {
                     sign: -1,
                   })
                 }
-                className="w-[30px] aspect-square bg-red-400 text-center my-auto rounded-full font-bold"
+                className="w-[30px] aspect-square bg-white border-2 border-slate-100  text-center my-auto rounded-full font-bold text-[#FFAB09]"
               >
                 -
               </div>
@@ -70,7 +70,7 @@ const CartPopUp = (props) => {
                     sign: +1,
                   })
                 } /////////////
-                className="w-[30px] aspect-square bg-teal-200 text-center my-auto rounded-full font-bold"
+                className="w-[30px] aspect-square bg-white border-2 border-slate-100 text-center my-auto rounded-full font-bold text-[#FFAB09]"
               >
                 +
               </div>
@@ -78,13 +78,13 @@ const CartPopUp = (props) => {
           ))}
           <div className="text-center mt-5 mb-2">
             <button
-              className="w-[80%] bg-teal-300 rounded-lg p-2 font-bold shadow-lg"
+              className="w-[80%] bg-[#FFAB09] rounded-lg p-2 font-bold shadow-lg"
               onClick={() => {
                 CreateOrder(cart, tableId);
                 setToggle(false);
               }}
             >
-              สั่งอาหาร
+              เพิ่มไปยังตะกร้า
             </button>
           </div>
         </div>

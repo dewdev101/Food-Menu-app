@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
+
 const SlideImg = () => {
   const slides = [
     {
@@ -16,6 +17,7 @@ const SlideImg = () => {
     },
   ];
   const [currentIndex, setCurrentIndex] = useState(2);
+  const [toggleSlide,setToggleSlide] = useState(true);
 
   const prevSlide = () => {
     const isFirstSlide = currentIndex === 0;
@@ -33,11 +35,26 @@ const SlideImg = () => {
     setCurrentIndex(slideIndex);
   };
 
+  const startSlider = () =>{
+    setInterval(() =>{
+      nextSlide();
+    },5000)
+  };
+
+  useEffect(()=>{
+    console.log("startSlider");
+  
+    // startSlider();
+  
+  },[]);
+
+
+
   return (
     <div className="mx-auto text-center w-screen pt-12 pb-1 Object-cover hidden-overflow rounded-lg relative group  ">
       <div className="duration-500 rounded-lg ">
         <img
-          className="mt-2 w-[350px] h-[200px] md:h-[300px] mx-auto rounded-lg shadow-lg md:w-1/3  "
+          className="mt-2 w-[280px] md:w-[350px] md:h-[220px] h-[200px] mx-auto rounded-lg shadow-lg   "
           alt="Background Image"
           src={slides[currentIndex].url}
         />
@@ -51,7 +68,7 @@ const SlideImg = () => {
       <div className="flex justify-center py-2 text-2xl cursor-pointer">
         {slides.map((slide, slideIndex) => (
           <div>
-            <RxDotFilled onClick={()=>goToSlide(slideIndex)} />
+            <RxDotFilled onClick={() => goToSlide(slideIndex)} />
           </div>
         ))}
       </div>
