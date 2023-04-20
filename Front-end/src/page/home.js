@@ -2,6 +2,7 @@ import Nav from "../Component/Nav";
 import CartPopUp from "../Component/CartPopUp";
 import ListMenu from "../Component/ListMenu";
 import { useState, useEffect } from "react";
+import SlideImg from "../Component/SlideImg";
 import axios from "axios";
 // import supabase from "../config/supabaseConfig"
 
@@ -11,7 +12,6 @@ const Home = () => {
   const [cart, setCart] = useState([]);
   const [categories, setCategories] = useState([]);
   const [tableId, setTableId] = useState();
-
 
   useEffect(() => {
     const a = axios({
@@ -25,7 +25,6 @@ const Home = () => {
       //   res.data?.map((r) => r.categoryName)
       // );
       setCategories([...new Set(res.data?.map((r) => r.categoryName))]);
-    
     });
   }, []);
 
@@ -74,14 +73,10 @@ const Home = () => {
         <div>
           <Nav toggle={toggle} setToggle={setToggle} />
         </div>
-        <div className="mx-auto text-center w-screen pt-12 pb-1 Object-cover hidden-overflow rounded-lg">
-          <img
-            className="p-4  w-[350px] mx-auto rounded-lg shadow-lg md:w-1/3"
-            alt="Background Image"
-            src="https://lh5.googleusercontent.com/proxy/OOLPeoIKpdepNl7UpQ4zFV2z9HYxVljs9JIUOiuJTsCSe6k40i1yc6NQ26cR2a53JKJ92SS6hPpy3SEtfpo3xwKGh_L4IJASo-6jn38u3OCA6X64aTSXD9d94hmn2auLxVo=w1200-h630-p-k-no-nu"
-          />
+        <SlideImg />
+        <div className="text-center text-2xl font-bold font-kanit my-2 bg-slate-50">
+          รายการอาหาร
         </div>
-        <div className="text-center text-2xl font-bold font-kanit my-2 bg-slate-50">รายการอาหาร</div>
         <div className="w-full md:grid grid-cols-3 md:mr-[100px] md:text-center ">
           <ListMenu
             categories={categories}
