@@ -1,5 +1,5 @@
-import React,{useState}from "react";
-import {BsChevronCompactLeft,BsChevronCompactRight} from'react-icons/bs';
+import React, { useState } from "react";
+import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 const SlideImg = () => {
   const slide = [
     {
@@ -14,17 +14,35 @@ const SlideImg = () => {
       url: "https://img-global.cpcdn.com/recipes/1ec6618e288a3f43/1200x630cq70/photo.jpg",
     },
   ];
-  console.log("slide 0 :",slide[0].url);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const prevSlide = () => {
+    const isFirstSlide = currentIndex === 0;
+    const newIndex = isFirstSlide ? slide.length - 1 : currentIndex - 1;
+    setCurrentIndex(newIndex);
+  };
+
+  const nextSlide = () => {
+    const isLastSlide = currentIndex === slide.length - 1;
+    const newIndex = isLastSlide ? 0 : currentIndex + 1;
+    setCurrentIndex(newIndex);
+  };
   return (
-    <div className="mx-auto text-center w-screen pt-12 pb-1 Object-cover hidden-overflow rounded-lg">
-    <div className="duration-500 relative">
-      <img
-        className="p-4  w-[350px] mx-auto rounded-lg shadow-lg md:w-1/3"
-        alt="Background Image"
-        src={slide[2].url}
-      />
+    <div className="mx-auto text-center w-screen pt-12 pb-1 Object-cover hidden-overflow rounded-lg relative group  ">
+      <div className="duration-500 rounded-lg ">
+        <img
+          className="mt-2 w-[350px] h-[200px] md:h-[300px] mx-auto rounded-lg shadow-lg md:w-1/3  "
+          alt="Background Image"
+          src={slide[currentIndex].url}
+        />
+      </div>
+      <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 -translate-y-[-50%] left-3 md:left-[30%] text-xl cursor-pointer hover:bg-white hover:rounded-full ">
+        <BsChevronCompactLeft onClick={prevSlide} size={30} />
+      </div>
+      <div className="hidden group-hover:block absolute top-[50%] -translate-x-0 -translate-y-[-50%] right-3 md:right-[30%] text-xl cursor-pointer hover:bg-white hover:rounded-full">
+        <BsChevronCompactRight onClick={nextSlide} size={30} />
+      </div>
     </div>
-  </div>
   );
 };
 export default SlideImg;
