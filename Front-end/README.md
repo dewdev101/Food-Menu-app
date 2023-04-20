@@ -1,20 +1,22 @@
-# install react
+# Front-end project settings
+
+### Install react
 
 ```bash
-npx create-react-app my-app
-cd [ProjectName]
+npx create-react-app **[ProjectName]**
+cd **[ProjectName]**
 npm start
 ```
 
-# install tailwindCSS
+### Install tailwindCSS
 
 ```bash
 npm install -D tailwindcss
 npx tailwindcss init
 ```
 
-This will create tailwind.config.js
-then copy below to tailwind.config.js
+This will create **tailwind.config.js**
+then copy below to **tailwind.config.js**
 
 ```bash
 module.exports = {
@@ -30,9 +32,9 @@ module.exports = {
 }
 ```
 
-# Add tailwindCSS to directory
+### Add tailwindCSS to directory
 
-copy below to index.css
+ - copy below to **index.css**
 
 ```bash
 @tailwind base;
@@ -40,7 +42,7 @@ copy below to index.css
 @tailwind utilities;
 ```
 
-# Create postcss.config.js
+ - create **postcss.config.js**
 
 then copy below to the file
 
@@ -53,19 +55,19 @@ module.exports = {
 }
 ```
 
-# install axios
+### Install axios
 
 ```bash
 yarn add axios
 ```
 
-# install react-icons
+### Install react-icons
 
 ```bash
 yarn add react-icons
 ```
 
-# install router
+### Install router
 
 ```bash
 yarn add react-routers-dom
