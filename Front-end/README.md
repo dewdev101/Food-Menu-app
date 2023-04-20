@@ -15,7 +15,7 @@ npm install -D tailwindcss
 npx tailwindcss init
 ```
 
-This will create **tailwind.config.js**
+This will create <font color="blue">**tailwind.config.js**</font>
 then copy below to **tailwind.config.js**
 
 ```bash
@@ -37,9 +37,9 @@ module.exports = {
  - copy below to **index.css**
 
 ```bash
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@tailwind base
+@tailwind components
+@tailwind utilities
 ```
 
  - create **postcss.config.js**
