@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { Menu } from '@headlessui/react'
 
 const CartPopUp = (props) => {
   // console.log("CartPopUp", props);
@@ -84,7 +85,8 @@ const CartPopUp = (props) => {
                 setToggle(false);
               }}
             >
-              เพิ่มไปยังตะกร้า
+                <Link to="/checkBill"> เพิ่มไปยังตะกร้า</Link>
+             
             </button>
           </div>
         </div>

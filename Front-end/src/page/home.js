@@ -4,6 +4,7 @@ import ListMenu from "../Component/ListMenu";
 import { useState, useEffect } from "react";
 import SlideImg from "../Component/SlideImg";
 import axios from "axios";
+
 // import supabase from "../config/supabaseConfig"
 
 const Home = () => {
@@ -59,7 +60,7 @@ const Home = () => {
     console.log("_preparedData", _preparedData);
     axios({
       method: "POST",
-      url: "http://localhost:5000/dewKitchne/createOrder",
+      url: "http://localhost:5000/myKitchen/createOrderHandler",
       data: _preparedData,
     }).then((response) => {
       console.log("createOrder response.data:", response.data);

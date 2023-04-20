@@ -29,7 +29,7 @@ const CheckBillMain = () => {
     const config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "http://localhost:5000/dewKitchen/getOrderByTableId",
+      url: "http://localhost:5000/myKitchen/getOrderByTableId",
       headers: {
         "Content-Type": "application/json",
       },
@@ -41,7 +41,7 @@ const CheckBillMain = () => {
       .then((response) => {
         console.log("respon555", response.data);
         console.log(JSON.stringify(response.data));
-        setBill(response.data)
+        setBill(response.data);
       })
       .catch((error) => {
         console.log(error);
@@ -51,7 +51,7 @@ const CheckBillMain = () => {
 
   const calculateBill = () => {
     const _result = bill[0].items.reduce((acc, r) => acc + r.totalPrice, 0);
-    console.log("_result",_result);
+    console.log("_result", _result);
 
     return setTotalPrice(_result);
   };
@@ -62,13 +62,13 @@ const CheckBillMain = () => {
         <Nav />
       </div>
       <div className="font-kanit bg-slate-200 h-screen">
-        <div className="text-2xl text-center   bg-red-500">รายการสั่งอาหาร</div>
+        <div className="">[]</div>
         <div className="text-2xl text-center mt-7   p-2">
-          <div className="text-2xl text-center font-bold">รายการสั่งอาหาร</div>
+          <div className="text-2xl text-center font-bold">เลือกโต๊ะที่นั่ง</div>
           <div className="grid grid-cols-5  mx-auto mt-5 gap-4 font-bold">
             {tableNumber?.map((r) => (
               <button
-                className="p-4 bg-gradient-to-r from-yellow-200 to-yellow-300 rounded-lg "
+                className="p-4 bg-[#FFAB09]  rounded-lg "
                 onClick={() => {
                   CheckBillByTableId(r);
                   setTableId(r);
@@ -85,10 +85,14 @@ const CheckBillMain = () => {
         <div className="p-4">
           <div className="flex flex-row">
             <div className="w-[80%]">
-              โต๊ะ {tableId} ยอดรวม <span className="font-bold text-xl bg-yellow-200 px-1 rounded-lg">{totalPrice}</span> บาท
+              โต๊ะ {tableId} ยอดรวม{" "}
+              <span className="font-bold text-xl bg-[#FFF1D2] px-1 rounded-lg">
+                {totalPrice}
+              </span>{" "}
+              บาท
             </div>
             <div>
-              <button className="bg-teal-300 p-2 text-center my-auto rounded-lg">
+              <button className="bg-[#FFF1D2] p-2 text-center my-auto rounded-lg">
                 เช็คบิล
               </button>
             </div>

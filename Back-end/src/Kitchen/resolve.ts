@@ -1,10 +1,19 @@
 import { PrismaClient } from "@prisma/client";
-import { IAddCategory, IAddMenu, IDeleteCategories, IDeleteMenu, IGetCategories, IGetMenu } from "./interface";
+import {
+  IAddCategory,
+  IAddMenu,
+  ICreateOrder,
+  IDeleteCategories,
+  IDeleteMenu,
+  IGetCategories,
+  IGetMenu,
+  IGetOrderByTable,
+} from "./interface";
 export const prisma = new PrismaClient();
 
-export const getMenu = async (args:IGetMenu)=>{
+export const getMenu = async (args: IGetMenu) => {
   const result = await prisma.dewKitchenMenu.findMany({});
-  return result
+  return result;
 };
 
 export const addCategory = async (args: IAddCategory) => {
@@ -32,19 +41,67 @@ export const addMenu = async (args: IAddMenu) => {
   return result;
 };
 
-export const getCategories = async(args:IGetCategories)=>{
+export const getCategories = async (args: IGetCategories) => {
   const result = await prisma.dewKitchenCategory.findMany({});
   return result;
 };
 
-export const deleteCategories = async(args:IDeleteCategories)=>{
+export const deleteCategories = async (args: IDeleteCategories) => {
   const result = await prisma.dewKitchenCategory.deleteMany({});
 };
 
-export const deleteMenu = async(args:IDeleteMenu)=>{
+export const deleteMenu = async (args: IDeleteMenu) => {
   const result = await prisma.dewKitchenMenu.deleteMany({
     where: {
-      id: args.id
+      id: args.id,
+    },
+  });
+  return result;
+};
+
+export const getOrderByTableId = async (args: IGetOrderByTable) => {
+  const result = await prisma.dewKitchenOrder.findMany({
+    where: {
+      tableId: args.tableId,
+    },
+    select: {
+      tableId: true,
+      items: {
+        select: {
+          id: true,
+          menu: {
+            select: {
+              name: true,
+              price: true,
+              categoryName: true,
+            },
+          },
+          menuId: true,
+          quantity: true,
+          totalPrice: true,
+        },
+      },
+    },
+  });
+  return result;
+};
+
+export const createOrder = async (args: ICreateOrder) => {
+  console.log("args", args);
+  const result = await prisma.dewKitchenOrder.create({
+    data: {
+      tableId: args.tableId,
+      items: {
+        create: args.items.map((r) => {
+          return {
+            quantity: r.quantity,
+            totalPrice: r.totalPrice,
+            menu: {
+              connect: { id: r.menuId },
+            },
+          };
+        }),
+      },
     },
   });
   return result;
