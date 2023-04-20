@@ -73,7 +73,9 @@ const Home = () => {
         <div>
           <Nav toggle={toggle} setToggle={setToggle} />
         </div>
+        <div className="pt-4">
         <SlideImg />
+        </div>
         <div className="text-center text-2xl font-bold font-kanit my-2 bg-slate-50">
           รายการอาหาร
         </div>
