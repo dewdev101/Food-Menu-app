@@ -67,6 +67,8 @@ export const getOrderByTableId = async (args: IGetOrderByTable) => {
     },
     select: {
       tableId: true,
+      status:true,
+      id:true,
       items: {
         select: {
           id: true,
@@ -112,4 +114,5 @@ export const getOrders = async(args:IGetOrders)=>{
   const result = await prisma.dewKitchenOrder.findMany({})
   return result;
 };
+
 
