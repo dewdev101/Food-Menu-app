@@ -8,6 +8,7 @@ import {
   IGetCategories,
   IGetMenu,
   IGetOrderByTable,
+  IGetOrders,
 } from "./interface";
 export const prisma = new PrismaClient();
 
@@ -106,3 +107,9 @@ export const createOrder = async (args: ICreateOrder) => {
   });
   return result;
 };
+
+export const getOrders = async(args:IGetOrders)=>{
+  const result = await prisma.dewKitchenOrder.findMany({})
+  return result;
+};
+

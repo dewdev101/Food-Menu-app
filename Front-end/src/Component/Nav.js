@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaCartPlus, FaBars } from "react-icons/fa";
-const Nav = ({ setToggle, toggle }) => {
+const Nav = () => {
   return (
     <>
       <div className=" fixed   bg-[#FFAB09] flex flex-row w-screen  h-[50px] p-2 space-x-2 font-kanit">
@@ -15,8 +15,8 @@ const Nav = ({ setToggle, toggle }) => {
           <Link to="/faq">FAQ</Link>
         </div>
         <div
-          className="w-1/8 my-auto text-2xl  text-black "
-          onClick={() => setToggle(!toggle)}
+          className="w-1/8 my-auto text-2xl  text-black cursor-pointer "
+          onClick={() =>console.log("Cart Click!")}
         >
           <Link to="/checkBill">
             {" "}

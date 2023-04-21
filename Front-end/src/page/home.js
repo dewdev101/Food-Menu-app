@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import SlideImg from "../Component/SlideImg";
 import axios from "axios";
 
+
 // import supabase from "../config/supabaseConfig"
 
 const Home = () => {
@@ -21,10 +22,6 @@ const Home = () => {
     }).then((res) => {
       setMenu(res.data);
       console.log("res.data>>>>", res.data);
-      // console.log(
-      //   "catgory",
-      //   res.data?.map((r) => r.categoryName)
-      // );
       setCategories([...new Set(res.data?.map((r) => r.categoryName))]);
     });
   }, []);
@@ -71,8 +68,8 @@ const Home = () => {
   return (
     <>
       <div className="bg-gradient-to-b from-slate-200 to-slate-100  w-screen">
-        <div>
-          <Nav toggle={toggle} setToggle={setToggle} />
+        <div className="">
+          <Nav />
         </div>
         <div className="pt-4">
         <SlideImg />

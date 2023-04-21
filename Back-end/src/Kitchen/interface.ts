@@ -3,6 +3,7 @@ import * as t from "io-ts";
 export interface IGetMenu {}
 export interface IGetCategories {}
 export interface IDeleteCategories {}
+export interface IGetOrders{}
 
 export const AddCategoryCodec = t.type({
   category: t.string,
@@ -24,7 +25,6 @@ export interface IDeleteMenu extends t.TypeOf<typeof DeleteMenuCodec> {}
 
 export const IGetOrderByTableIdCOdec = t.type({
   tableId: t.number,
-  name: t.boolean,
 });
 export interface IGetOrderByTable
   extends t.TypeOf<typeof IGetOrderByTableIdCOdec> {}
@@ -40,3 +40,4 @@ export const ICreateOrderCodec = t.type({
   ),
 });
 export interface ICreateOrder extends t.TypeOf<typeof ICreateOrderCodec> {}
+

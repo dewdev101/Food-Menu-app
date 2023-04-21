@@ -1,6 +1,9 @@
 import Nav from "../Component/Nav";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { ProgressSpinner } from 'primereact/progressspinner';
+        
+        
 
 const CheckBillMain = () => {
   const [bill, setBill] = useState([]);
@@ -8,15 +11,15 @@ const CheckBillMain = () => {
   const [toggle, setToggle] = useState(false);
   const [totalPrice, setTotalPrice] = useState(0);
 
+
   const tableNumber = [...Array(16).keys()].filter((r) => r > 0);
   //fetch
   useEffect(() => {
     axios({
       method: "POST",
-      url: "http://localhost:5000/dewKitchen/getOrders",
+      url: "http://localhost:5000/myKitchen/getOrders",
     }).then((response) => {
       console.log("response.data", response.data);
-      setBill(response.data);
     });
   }, []);
 
@@ -25,6 +28,7 @@ const CheckBillMain = () => {
     console.log("tableId", tableId);
     const preparedData = JSON.stringify({ tableId: tableId });
     console.log("preparedData", preparedData);
+
 
     const config = {
       method: "post",
@@ -39,9 +43,10 @@ const CheckBillMain = () => {
     axios
       .request(config)
       .then((response) => {
-        console.log("respon555", response.data);
-        console.log(JSON.stringify(response.data));
+        console.log("bill response", response.data);
+        // console.log(JSON.stringify(response.data));
         setBill(response.data);
+        // setLoading(false);
       })
       .catch((error) => {
         console.log(error);
@@ -50,7 +55,9 @@ const CheckBillMain = () => {
   console.log("Bill>>>", bill);
 
   const calculateBill = () => {
-    const _result = bill[0].items.reduce((acc, r) => acc + r.totalPrice, 0);
+    const _result = bill[0]?.items?.reduce((acc, r) => acc + r.totalPrice, 0);
+    const result = bill.map((r) => r.items);
+    console.log("result>>", result);
     console.log("_result", _result);
 
     return setTotalPrice(_result);
@@ -61,9 +68,8 @@ const CheckBillMain = () => {
       <div>
         <Nav />
       </div>
-      <div className="font-kanit bg-slate-200 h-screen">
-        <div className="">[]</div>
-        <div className="text-2xl text-center mt-7   p-2">
+      <div className="font-kanit bg-slate-200 h-screen ">
+        <div className="text-2xl text-center pt-[70px] p-2">
           <div className="text-2xl text-center font-bold">เลือกโต๊ะที่นั่ง</div>
           <div className="grid grid-cols-5  mx-auto mt-5 gap-4 font-bold">
             {tableNumber?.map((r) => (
@@ -82,7 +88,7 @@ const CheckBillMain = () => {
           </div>
         </div>
 
-        <div className="p-4">
+        <div className="p-4 relative">
           <div className="flex flex-row">
             <div className="w-[80%]">
               โต๊ะ {tableId} ยอดรวม{" "}
