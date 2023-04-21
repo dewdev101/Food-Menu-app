@@ -7,6 +7,7 @@ import {
   getMenuHandler,
   getOrderByTableIdHandler,
   getOrderHandler,
+  updateOrdersHandler,
 } from "./Kitchen/handler";
 
 export const AppRoutes = [
@@ -49,5 +50,10 @@ export const AppRoutes = [
     method: "post",
     path: "/myKitchen/getOrders",
     action: getOrderHandler,
+  },
+  {
+    method: "post",
+    path: "/myKitchen/updateOrdersHandler",
+    action: updateOrdersHandler,
   },
 ];

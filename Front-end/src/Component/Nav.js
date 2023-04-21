@@ -18,7 +18,7 @@ const Nav = ({setToggleCheckBill}) => {
           className="w-1/8 my-auto text-2xl  text-black cursor-pointer "
           onClick={() =>console.log("Cart Click!")}
         >
-          <Link to="/checkBill">
+         <Link to="/checkBill">
             {" "}
             <FaCartPlus />{" "}
           </Link>

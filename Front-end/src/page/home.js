@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import SlideImg from "../Component/SlideImg";
 import axios from "axios";
 
-
 // import supabase from "../config/supabaseConfig"
 
 const Home = () => {
@@ -68,11 +67,9 @@ const Home = () => {
   return (
     <>
       <div className="bg-gradient-to-b from-slate-200 to-slate-100  w-screen">
-        <div className="">
-          <Nav />
-        </div>
+        <Nav />
         <div className="pt-4">
-        <SlideImg />
+          <SlideImg />
         </div>
         <div className="text-center text-2xl font-bold font-kanit my-2 bg-slate-50">
           รายการอาหาร

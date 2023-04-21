@@ -9,13 +9,13 @@ const App = () => (
   <>
     <BrowserRouter>
       <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/checkBill" element={<CheckBill />} />
-        <Route exact path="/faq" element={<Faq />} />
-        <Route exact path="*" element={<>404 Not found</>}></Route>
+        <Route  path="/" element={<Home />} />
+        <Route  path="/checkBill" element={<CheckBill />} />
+        <Route  path="/faq" element={<Faq />} />
+        <Route  path="*" element={<>404 Not found</>}/>
       </Routes>
     </BrowserRouter>
-  </>
+  </> 
 );
 
 export default App;
