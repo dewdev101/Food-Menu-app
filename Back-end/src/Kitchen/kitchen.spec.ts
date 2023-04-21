@@ -1,4 +1,4 @@
-import { addCategory, addMenu, createOrder, deleteMenu } from "./resolve";
+import { addCategory, addMenu, createOrder, deleteMenu, updateOrders } from "./resolve";
 
 describe("addCategory", () => {
   test("should add a category", async () => {
@@ -56,3 +56,14 @@ describe("createOrder", () => {
     expect(result.status.length > 0).toBe(true);
   });
 });
+
+describe("updateOrder", () => {
+  test("update order", async() => {
+    const tableId = 5
+    const status = "DONE"
+    const result = await updateOrders({
+      tableId: tableId,
+      status: status
+    })
+    console.log("result",result);
+})})

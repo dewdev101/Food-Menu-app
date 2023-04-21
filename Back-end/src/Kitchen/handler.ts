@@ -8,6 +8,7 @@ import {
   getMenu,
   getOrderByTableId,
   getOrders,
+  updateOrders,
 } from "./resolve";
 import {
   AddCategoryCodec,
@@ -103,6 +104,16 @@ export const getOrderHandler = async (req: Request, res: Response) => {
   try {
     const body = req?.body;
     const result = await getOrders(body);
+    return res.status(200).json(result);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+export const updateOrdersHandler = async (req: Request, res: Response) => {
+  try {
+    const body = req?.body;
+    const result = await updateOrders(body);
     return res.status(200).json(result);
   } catch (err) {
     res.status(500).json(err);

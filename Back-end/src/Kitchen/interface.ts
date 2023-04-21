@@ -41,3 +41,7 @@ export const ICreateOrderCodec = t.type({
 });
 export interface ICreateOrder extends t.TypeOf<typeof ICreateOrderCodec> {}
 
+export interface IUpdateOrder{
+  tableId: number
+  status:string
+};

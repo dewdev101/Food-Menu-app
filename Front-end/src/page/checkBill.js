@@ -117,7 +117,7 @@ const CheckBillMain = () => {
                   </span>
                  
                 ))
-                }<span className="font-bold px-1 rounded-lg mx-2 bg-[#FFCE6E]">{bill[0].status}</span>
+                }<span className={`font-bold px-1 rounded-lg mx-2 ${bill[0].status === "PENDING" ? "bg-[#FFCE6E]" : "bg-teal-200"} `}>{bill[0].status}</span>
               </div>
 
               {bill.map((r) =>

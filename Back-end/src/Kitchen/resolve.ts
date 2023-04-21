@@ -9,6 +9,7 @@ import {
   IGetMenu,
   IGetOrderByTable,
   IGetOrders,
+  IUpdateOrder,
 } from "./interface";
 export const prisma = new PrismaClient();
 
@@ -115,4 +116,14 @@ export const getOrders = async(args:IGetOrders)=>{
   return result;
 };
 
-
+export const updateOrders = async(args:IUpdateOrder)=>{
+  const result = await prisma.dewKitchenOrder.updateMany({
+    where:{
+      tableId:args.tableId
+    },
+    data:{
+      status: args.status
+    }
+  })
+  return result;
+};
