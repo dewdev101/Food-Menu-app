@@ -67,7 +67,10 @@ const CheckBillMain = () => {
   };
 
   const updateBill = (tableId) => {
-    const _data = JSON.stringify({ tableId: tableId, status: "ชำระเงินเรียบร้อย" });
+    const _data = JSON.stringify({
+      tableId: tableId,
+      status: "ชำระเงินเรียบร้อย",
+    });
     setLoading(true);
     const config = {
       method: "post",
@@ -89,13 +92,11 @@ const CheckBillMain = () => {
   };
 
   const delay = () => {
-    // setIsDone(true);
     const intervalId = setInterval(() => {
       console.log("Interval is running");
       setLoading(false);
     }, 3000);
 
-    // Stop the interval after 5 seconds
     setTimeout(() => {
       clearInterval(intervalId);
       console.log("Interval has been stopped");
@@ -106,10 +107,10 @@ const CheckBillMain = () => {
     <>
       <div className="font-kanit bg-slate-200 h-screen">
         <div>
-          <Nav setToggleCheckBill={setToggleCheckBill} />
+          <Nav />
         </div>
 
-        <div className="text-2xl text-center pt-[70px] p-2 ">
+        <div className="text-2xl text-center mt-2 p-2 ">
           <div className="text-2xl text-center font-bold">เลือกโต๊ะที่นั่ง</div>
 
           <div className="grid grid-cols-5  mx-auto mt-5 gap-4 font-bold">
@@ -133,7 +134,9 @@ const CheckBillMain = () => {
           <div className="p-4 relative  ">
             <div className="flex flex-row">
               <div className="w-[80%]">
-                โต๊ะ <span className="bg-[#FFF1D2] px-1 rounded-lg">{tableId}</span> ยอดรวม{" "}
+                โต๊ะ{" "}
+                <span className="bg-[#FFF1D2] px-1 rounded-lg">{tableId}</span>{" "}
+                ยอดรวม{" "}
                 <span className=" text- bg-[#FFF1D2] px-1 rounded-lg">
                   {totalPrice}
                 </span>{" "}
@@ -227,7 +230,7 @@ const CheckBillMain = () => {
                 className="bg-[#FFCE6E]  py-1 mx-3 rounded-lg"
                 onClick={() => []}
               >
-              <Link to="/">  กลับสู่หน้าหลัก </Link>
+                <Link to="/"> กลับสู่หน้าหลัก </Link>
               </button>
             </div>
           </div>

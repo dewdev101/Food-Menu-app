@@ -51,7 +51,7 @@ const SlideImg = () => {
 
 
   return (
-    <div className="mx-auto text-center w-screen pt-12 pb-1 Object-cover hidden-overflow rounded-lg relative group  ">
+    <div className="mx-auto text-center w-screen pt-2 pb-1 Object-cover hidden-overflow rounded-lg relative group  ">
       <div className="duration-500 rounded-lg ">
         <img
           className="mt-2 w-[280px] md:w-[350px] md:h-[220px] h-[200px] mx-auto rounded-lg shadow-lg   "

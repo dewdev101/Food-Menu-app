@@ -69,7 +69,7 @@ const Home = () => {
     <>
       <div className="bg-gradient-to-b from-slate-200 to-slate-100  w-screen relative">
         <Nav className="absolute" />
-        <div className="pt-4">
+        <div className="">
           <SlideImg />
         </div>
         <div className="text-center text-2xl font-bold font-kanit my-2 bg-slate-50">
