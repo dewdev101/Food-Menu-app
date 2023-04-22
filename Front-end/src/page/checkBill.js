@@ -47,7 +47,9 @@ const CheckBillMain = () => {
       .request(config)
       .then((response) => {
         console.log("bill response", response.data);
-        setBill(response.data);
+        const _bill = response.data.filter(r=>r.status === "PENDING")
+        console.log("bill filter",_bill)
+        setBill(_bill);
       })
       .catch((error) => {
         console.log(error);
@@ -55,8 +57,8 @@ const CheckBillMain = () => {
   };
   console.log("bill>>>", bill);
 
-  useEffect(()=>{
-    calculateBill()
+  useEffect(() => {
+    calculateBill();
     const intervalId = setInterval(() => {
       console.log("Interval is running");
       setLoading(true);
@@ -66,19 +68,18 @@ const CheckBillMain = () => {
       clearInterval(intervalId);
       console.log("Interval has been stopped");
       setLoading(false);
-     
     }, 3000);
-  },[bill]);
+  }, [bill]);
 
   const calculateBill = () => {
-    setTotalPrice([])
+    setTotalPrice([]);
     const _result = bill
       .map((r) =>
         r.items.map((r) => r.totalPrice).reduce((acc, r) => acc + r, 0)
       )
       .reduce((acc, r) => acc + r, 0);
     console.log("result.......", _result);
-    const finalResult = setTotalPrice(_result)
+    const finalResult = setTotalPrice(_result);
 
     return finalResult;
   };
@@ -146,76 +147,95 @@ const CheckBillMain = () => {
           </div>
         </div>
 
-        {toggleCheckBill === "checkBill" && bill.length > 0 && !loading && bill[0].status !== "ชำระเงินเรียบร้อย" &&
-        (
-          <div className="p-4 relative bg-slate-200 ">
-            <div className="flex flex-row">
-              <div className="w-[80%] md:w-[90%]">
-                โต๊ะ{" "}
-                <span className="bg-[#FFF1D2] px-1 rounded-lg">{tableId}</span>{" "}
-                ยอดรวม{" "}
-                <span className=" text- bg-[#FFF1D2] px-1 rounded-lg">
-                  {totalPrice}
-                </span>{" "}
-                บาท
-              </div>
-              <div className="">
-                <button
-                  className="bg-[#FFF1D2] p-2 text-center my-auto rounded-lg md:w-[200px] md:mr-5 "
-                  onClick={() => {
-                    setPaymentToggle(true);
-                  }}
-                >
-                  เช็คบิล
-                </button>
-              </div>
-            </div>
-
-            <div className="mt-2 w-screen">
-              <div className="my-2 ">
-                หมายเลขคำสั่งซื้อ{" "}
-                <div className="grid grid-cols-5 mx-4 gap-1">
-                {bill.map((r) => (
-                  <div className="bg-[#FFF1D2] px-2 rounded-lg w-[50px]">
-                    #{r.id}
-                  </div>
-                ))}</div>
-                
-                <div className="my-1">สถานะ
-                <span
-                  className={` px-1 rounded-lg mx-2   ${
-                    bill[0].status === "PENDING"
-                      ? "bg-[#FFCE6E]"
-                      : "bg-teal-200"
-                  } `}
-                >
-                 {bill[0].status}
-                </span>
+        {toggleCheckBill === "checkBill" &&
+          bill.length > 0 &&
+          !loading &&
+          bill[0].status !== "ชำระเงินเรียบร้อย" && (
+            <div className="p-4 relative bg-slate-200 duration-500">
+              <div className="flex flex-row">
+                <div className="w-[80%] md:w-[90%]">
+                  โต๊ะ{" "}
+                  <span className="bg-[#FFF1D2] px-1 rounded-lg">
+                    {tableId}
+                  </span>{" "}
+                  ยอดรวม{" "}
+                  <span className=" text- bg-[#FFF1D2] px-1 rounded-lg">
+                    {totalPrice}
+                  </span>{" "}
+                  บาท
+                </div>
+                <div className="">
+                  <button
+                    className="bg-[#FFF1D2] p-2 text-center my-auto rounded-lg md:w-[200px] md:mr-5 "
+                    onClick={() => {
+                      setPaymentToggle(true);
+                    }}
+                  >
+                    เช็คบิล
+                  </button>
                 </div>
               </div>
 
-              {bill.map((r) =>
-                r.items.map((r) => {
-                  return (
-                    <>
-                      <div className="flex bg-red-50 ">
-                        <div className="p-2 w-2/3">{r.menu.name}</div>
-                        <div className="flex px-2">
-                          <div>{r.menu.price}</div>
-                          <div className="px-2">x{r.quantity}</div>
-                        </div>
+              <div className="mt-2 w-screen">
+                <div className="my-2 ">
+                  หมายเลขคำสั่งซื้อ{" "}
+                  <div className="grid grid-cols-5 mx-4 gap-1">
+                    {bill.map((r) => (
+                      <div className="bg-[#FFF1D2] px-2 rounded-lg w-[50px]">
+                        #{r.id}
                       </div>
-                    </>
-                  );
-                })
-              )}
+                    ))}
+                  </div>
+                  <div className="my-1">
+                    สถานะ
+                    <span
+                      className={` px-1 rounded-lg mx-2   ${
+                        bill[0].status === "PENDING"
+                          ? "bg-[#FFCE6E]"
+                          : "bg-teal-200"
+                      } `}
+                    >
+                      {bill[0].status}
+                    </span>
+                  </div>
+                </div>
 
-              <div className="text-right font-bold mr-8 md:mr-[100px]">
-                รวม {totalPrice} บาท
+                {bill.map((r) =>
+                  r.items.map((r) => {
+                    return (
+                      <>
+                        <div className="flex bg-red-50 ">
+                          <div className="p-2 w-2/3">{r.menu.name}</div>
+                          <div className="flex px-2">
+                            <div>{r.menu.price}</div>
+                            <div className="px-2">x{r.quantity}</div>
+                          </div>
+                        </div>
+                      </>
+                    );
+                  })
+                )}
+
+                <div className="text-right font-bold mr-8 md:mr-[100px]">
+                  รวม {totalPrice} บาท
+                </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
+
+        {toggleCheckBill === "checkBill" &&
+          (bill.length === 0 || bill[0].status === "ชำระเงินเรียบร้อย") && (
+            <>
+              <div
+                className={`${loading === false ? "opacity-100" : "opacity-0"}`}
+              >
+                <div className="duration-500 mt-10">
+                  <img src="sorry.png" />
+                </div>
+                <div className="text-center text-xl">ไม่มีรายการอาหาร</div>
+              </div>
+            </>
+          )}
 
         {paymentToggle && (
           <div className="flex top-0 right-0 min-h-screen w-screen  backdrop-blur-sm absolute">
