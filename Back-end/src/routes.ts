@@ -3,6 +3,7 @@ import {
   createOrderHandler,
   deleteCategoriesHandler,
   deleteMenuHandler,
+  deleteOrdersHandler,
   getCategoriesHandler,
   getMenuHandler,
   getOrderByTableIdHandler,
@@ -55,5 +56,10 @@ export const AppRoutes = [
     method: "post",
     path: "/myKitchen/updateOrdersHandler",
     action: updateOrdersHandler,
+  },
+  {
+    method: "post",
+    path: "/myKitchen/deleteOrdersHandler",
+    action: deleteOrdersHandler,
   },
 ];

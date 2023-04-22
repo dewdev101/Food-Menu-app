@@ -5,6 +5,8 @@ import {
   ICreateOrder,
   IDeleteCategories,
   IDeleteMenu,
+  IDeleteOrderItems,
+  IDeleteOrders,
   IGetCategories,
   IGetMenu,
   IGetOrderByTable,
@@ -68,8 +70,8 @@ export const getOrderByTableId = async (args: IGetOrderByTable) => {
     },
     select: {
       tableId: true,
-      status:true,
-      id:true,
+      status: true,
+      id: true,
       items: {
         select: {
           id: true,
@@ -111,19 +113,38 @@ export const createOrder = async (args: ICreateOrder) => {
   return result;
 };
 
-export const getOrders = async(args:IGetOrders)=>{
-  const result = await prisma.dewKitchenOrder.findMany({})
+export const getOrders = async (args: IGetOrders) => {
+  const result = await prisma.dewKitchenOrder.findMany({});
   return result;
 };
 
-export const updateOrders = async(args:IUpdateOrder)=>{
+export const updateOrders = async (args: IUpdateOrder) => {
   const result = await prisma.dewKitchenOrder.updateMany({
-    where:{
-      tableId:args.tableId
+    where: {
+      tableId: args.tableId,
     },
-    data:{
-      status: args.status
-    }
-  })
+    data: {
+      status: args.status,
+    },
+  });
   return result;
 };
+
+export const deleteOrders = async (args: IDeleteOrders) => {
+  const result = await prisma.dewKitchenOrder.deleteMany({
+    where: { status: args.status },
+  });
+  return result;
+};
+
+export const deleteOrderItems = async (args:IDeleteOrderItems)=>{
+  console.log("args",args);
+  const result = await prisma.dewOrderItem.deleteMany({
+    where:{
+      id:{
+        in:args.id.map(r=>r)
+      }
+    }
+  });
+  return result;
+}; 

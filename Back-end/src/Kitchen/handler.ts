@@ -4,6 +4,8 @@ import {
   createOrder,
   deleteCategories,
   deleteMenu,
+  deleteOrderItems,
+  deleteOrders,
   getCategories,
   getMenu,
   getOrderByTableId,
@@ -14,7 +16,9 @@ import {
   AddCategoryCodec,
   DeleteMenuCodec,
   ICreateOrderCodec,
+  IDeleteOrderItemsCodec,
   IGetOrderByTableIdCOdec,
+  IUpdateOrderCodec,
 } from "./interface";
 
 export const getMenuHandler = async (req: Request, res: Response) => {
@@ -113,8 +117,40 @@ export const getOrderHandler = async (req: Request, res: Response) => {
 export const updateOrdersHandler = async (req: Request, res: Response) => {
   try {
     const body = req?.body;
-    const result = await updateOrders(body);
-    return res.status(200).json(result);
+    if (IUpdateOrderCodec.decode(body)._tag === "Right") {
+      const result = await updateOrders(body);
+      return res.status(200).json(result);
+    } else {
+      res.status(500).send("Error to validate updateOrdersHandler");
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+export const deleteOrdersHandler = async (req: Request, res: Response) => {
+  try {
+    const body = req?.body;
+    if (IUpdateOrderCodec.decode(body)._tag === "Right") {
+      const result = await deleteOrders(body);
+      return res.status(200).json(result);
+    } else {
+      res.status(500).send("Error to validate deleteOrdersHandler");
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+export const deleteOrderItemsHandler = async (req: Request, res: Response) => {
+  try {
+    const body = req?.body;
+    if (IDeleteOrderItemsCodec.decode(body)._tag === "Right") {
+      const result = await deleteOrderItems(body);
+      return res.status(200).json(result);
+    } else {
+      res.status(500).send("Error to validate deleteOrderItemsHandler");
+    }
   } catch (err) {
     res.status(500).json(err);
   }
