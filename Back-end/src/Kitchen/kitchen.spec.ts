@@ -66,6 +66,7 @@ describe("updateOrder", () => {
       status: status
     })
     console.log("result",result);
+    expect(result.count>0).toBe(true);
 })})
 
 describe("deleteOrders",() =>{
@@ -75,6 +76,7 @@ describe("deleteOrders",() =>{
       status:status
     })
     console.log("result",result)
+    expect(result.count>0).toBe(true);
   });
 })
 
@@ -86,5 +88,6 @@ describe("deleteOrderItems",() =>{
       id:id
     })
     console.log("result",result)
+    expect(result.count>0).toBe(true);
   });
 })
