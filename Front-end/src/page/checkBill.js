@@ -72,7 +72,6 @@ const CheckBillMain = () => {
 
   const calculateBill = () => {
     setTotalPrice([])
-    // delayForUI()
     const _result = bill
       .map((r) =>
         r.items.map((r) => r.totalPrice).reduce((acc, r) => acc + r, 0)
@@ -122,18 +121,6 @@ const CheckBillMain = () => {
     }, 3000);
   };
 
-  // const delayForUI = () => {
-  //   const intervalId = setInterval(() => {
-  //     console.log("Interval is running");
-  //     setLoading(true);
-  //   }, 3000);
-
-  //   setTimeout(() => {
-  //     clearInterval(intervalId);
-  //     console.log("Interval has been stopped");
-  //     setLoading(false);
-  //   }, 3000);
-  // };
   return (
     <>
       <div className="font-kanit bg-slate-200 h-screen w-screen  ">
@@ -159,7 +146,7 @@ const CheckBillMain = () => {
           </div>
         </div>
 
-        {toggleCheckBill === "checkBill" && bill.length > 0 && !loading && 
+        {toggleCheckBill === "checkBill" && bill.length > 0 && !loading && bill[0].status !== "ชำระเงินเรียบร้อย" &&
         (
           <div className="p-4 relative bg-slate-200 ">
             <div className="flex flex-row">
