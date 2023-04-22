@@ -55,15 +55,21 @@ const CheckBillMain = () => {
   };
   console.log("bill>>>", bill);
 
+  useEffect(()=>{
+    calculateBill()
+  },[bill]);
+
   const calculateBill = () => {
+    setTotalPrice([])
     const _result = bill
       .map((r) =>
         r.items.map((r) => r.totalPrice).reduce((acc, r) => acc + r, 0)
       )
       .reduce((acc, r) => acc + r, 0);
     console.log("result.......", _result);
+    const finalResult = setTotalPrice(_result)
 
-    return setTotalPrice(_result);
+    return finalResult;
   };
 
   const updateBill = (tableId) => {
@@ -105,15 +111,13 @@ const CheckBillMain = () => {
   };
   return (
     <>
-      <div className="font-kanit bg-slate-200 h-screen">
+      <div className="font-kanit bg-slate-200 h-screen w-screen  ">
         <div>
           <Nav />
         </div>
-
         <div className="text-2xl text-center mt-2 p-2 ">
           <div className="text-2xl text-center font-bold">เลือกโต๊ะที่นั่ง</div>
-
-          <div className="grid grid-cols-5  mx-auto mt-5 gap-4 font-bold">
+          <div className="grid grid-cols-5  mx-auto mt-5 gap-4 font-bold p-2">
             {tableNumber?.map((r) => (
               <button
                 className="p-4 bg-[#FFAB09]  rounded-lg "
@@ -121,7 +125,6 @@ const CheckBillMain = () => {
                   CheckBillByTableId(r);
                   setTableId(r);
                   setToggleCheckBill("checkBill");
-                  calculateBill();
                   setFetch(!fetch);
                 }}
               >
@@ -130,10 +133,11 @@ const CheckBillMain = () => {
             ))}
           </div>
         </div>
+
         {toggleCheckBill === "checkBill" && bill.length > 0 && (
-          <div className="p-4 relative  ">
+          <div className="p-4 relative bg-slate-200 ">
             <div className="flex flex-row">
-              <div className="w-[80%]">
+              <div className="w-[80%] md:w-[90%]">
                 โต๊ะ{" "}
                 <span className="bg-[#FFF1D2] px-1 rounded-lg">{tableId}</span>{" "}
                 ยอดรวม{" "}
@@ -142,9 +146,9 @@ const CheckBillMain = () => {
                 </span>{" "}
                 บาท
               </div>
-              <div>
+              <div className="">
                 <button
-                  className="bg-[#FFF1D2] p-2 text-center my-auto rounded-lg"
+                  className="bg-[#FFF1D2] p-2 text-center my-auto rounded-lg md:w-[200px] md:mr-5 "
                   onClick={() => {
                     setPaymentToggle(true);
                   }}
@@ -189,10 +193,13 @@ const CheckBillMain = () => {
                 })
               )}
 
-              <div className="text-right font-bold">รวม {totalPrice} บาท</div>
+              <div className="text-right font-bold mr-4 md:mr-[100px]">
+                รวม {totalPrice} บาท
+              </div>
             </div>
           </div>
         )}
+
         {paymentToggle && (
           <div className="flex top-0 right-0 min-h-screen w-screen  backdrop-blur-sm absolute">
             <div className=" my-auto mx-auto ">
