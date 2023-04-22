@@ -57,10 +57,22 @@ const CheckBillMain = () => {
 
   useEffect(()=>{
     calculateBill()
+    const intervalId = setInterval(() => {
+      console.log("Interval is running");
+      setLoading(true);
+    }, 0);
+
+    setTimeout(() => {
+      clearInterval(intervalId);
+      console.log("Interval has been stopped");
+      setLoading(false);
+     
+    }, 3000);
   },[bill]);
 
   const calculateBill = () => {
     setTotalPrice([])
+    // delayForUI()
     const _result = bill
       .map((r) =>
         r.items.map((r) => r.totalPrice).reduce((acc, r) => acc + r, 0)
@@ -109,6 +121,19 @@ const CheckBillMain = () => {
       setIsDone(true);
     }, 3000);
   };
+
+  // const delayForUI = () => {
+  //   const intervalId = setInterval(() => {
+  //     console.log("Interval is running");
+  //     setLoading(true);
+  //   }, 3000);
+
+  //   setTimeout(() => {
+  //     clearInterval(intervalId);
+  //     console.log("Interval has been stopped");
+  //     setLoading(false);
+  //   }, 3000);
+  // };
   return (
     <>
       <div className="font-kanit bg-slate-200 h-screen w-screen  ">
@@ -134,7 +159,8 @@ const CheckBillMain = () => {
           </div>
         </div>
 
-        {toggleCheckBill === "checkBill" && bill.length > 0 && (
+        {toggleCheckBill === "checkBill" && bill.length > 0 && !loading && 
+        (
           <div className="p-4 relative bg-slate-200 ">
             <div className="flex flex-row">
               <div className="w-[80%] md:w-[90%]">
@@ -158,23 +184,27 @@ const CheckBillMain = () => {
               </div>
             </div>
 
-            <div className="mt-2">
-              <div className="my-1">
+            <div className="mt-2 w-screen">
+              <div className="my-2 ">
                 หมายเลขคำสั่งซื้อ{" "}
+                <div className="grid grid-cols-5 mx-4 gap-1">
                 {bill.map((r) => (
-                  <span className="bg-[#FFF1D2] px-2 rounded-lg w-[50px]">
+                  <div className="bg-[#FFF1D2] px-2 rounded-lg w-[50px]">
                     #{r.id}
-                  </span>
-                ))}
+                  </div>
+                ))}</div>
+                
+                <div className="my-1">สถานะ
                 <span
-                  className={` px-1 rounded-lg mx-2 ${
+                  className={` px-1 rounded-lg mx-2   ${
                     bill[0].status === "PENDING"
                       ? "bg-[#FFCE6E]"
                       : "bg-teal-200"
                   } `}
                 >
-                  {bill[0].status}
+                 {bill[0].status}
                 </span>
+                </div>
               </div>
 
               {bill.map((r) =>
@@ -193,7 +223,7 @@ const CheckBillMain = () => {
                 })
               )}
 
-              <div className="text-right font-bold mr-4 md:mr-[100px]">
+              <div className="text-right font-bold mr-8 md:mr-[100px]">
                 รวม {totalPrice} บาท
               </div>
             </div>
