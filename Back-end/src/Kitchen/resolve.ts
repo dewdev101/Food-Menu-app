@@ -148,3 +148,10 @@ export const deleteOrderItems = async (args:IDeleteOrderItems)=>{
   });
   return result;
 }; 
+
+export const deleteOrderItemsPayAlready = async(args: any) => {
+  const result = await prisma.dewOrderItem.deleteMany({
+    where:{orderId:null}
+  });
+  return result;
+};
