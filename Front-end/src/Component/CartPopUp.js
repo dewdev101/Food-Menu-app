@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import { Menu } from '@headlessui/react'
 
 const CartPopUp = (props) => {
-  // console.log("CartPopUp", props);
-
   const { setToggle, updateCart, cart, tableId, setTableId, CreateOrder } =
     props;
   const table = [...Array(16).keys()].filter((r) => r > 0);
@@ -58,8 +56,6 @@ const CartPopUp = (props) => {
                 {r.quantity}
               </div>
               {console.log("cart in CartPopup", cart)}
-              {/* {console.log("r", r)} */}
-              {/* {console.log("r for +",cart,r.quantity, r.id, r.name, r.price)} */}
               <div
                 onClick={() =>
                   updateCart({
@@ -70,7 +66,7 @@ const CartPopUp = (props) => {
                     price: r.price,
                     sign: +1,
                   })
-                } /////////////
+                } 
                 className="w-[30px] aspect-square bg-white border-2 border-slate-100 text-center my-auto rounded-full font-bold text-[#FFAB09]"
               >
                 +

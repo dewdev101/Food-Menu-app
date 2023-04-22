@@ -12,7 +12,7 @@ const Home = () => {
   const [toggle, setToggle] = useState(false);
   const [cart, setCart] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [tableId, setTableId] = useState();
+  const [tableId, setTableId] = useState(1);
 
   useEffect(() => {
     const a = axios({
@@ -70,6 +70,7 @@ const Home = () => {
         <Nav />
         <div className="pt-4">
           <SlideImg />
+          
         </div>
         <div className="text-center text-2xl font-bold font-kanit my-2 bg-slate-50">
           รายการอาหาร
